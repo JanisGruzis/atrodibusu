@@ -28,3 +28,29 @@ Running
 You can run software with apache (which requires vhost setup and stuff, but symfony is cool and has built in php based dev server). For dat sweet sweet server run:
 
 	php app/console server:run
+	
+Usage
+=====
+
+Some general shortcuts for doing stuff.
+
+Update database with changes
+----------------------------
+
+If there are changes in model, run.
+
+	php app/console doctrine:schema:update --force
+
+Create entity for ORM
+---------------------
+
+You can create entity class and you can also create it interactively through cli.
+
+	php app/console doctrine:generate:entity
+	
+Create setter/getter methods
+----------------------------
+
+If you are lazy as me you can in entities simply write attribute and run command bellow to generate setter/getter methods and repository for it.
+
+	php app/console doctrine:generate:entities AppBundle
