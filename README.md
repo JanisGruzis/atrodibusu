@@ -1,69 +1,30 @@
-Symfony Standard Edition
-========================
+Installation
+==============
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+These are general and probably like 90% of steps you should use to setup basic environment for running symfony2 project. Enjoy.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+OS software
+-----------
 
-What's inside?
---------------
+1. Get dat Ubuntu 14.04
+1. Install php. `sudo apt-get install php5`
+1. Install mysql. `sudo apt-get install mysql-server`
+1. Install multiple user permission manager a.k.a. acl. `sudo apt-get install acl`
+1. Install composer. `curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin`
 
-The Symfony Standard Edition is configured with the following defaults:
+App setup and dependencies
+--------------------------
 
-  * An AppBundle you can use to start coding;
+1. Download repository content. git pull <address> and stuff. If you want, I can add certificate to repository for faster pull/push.
+1. Install vendors (php lib dependencies). `composer install`
+1. Setup cache, log permissions. `./permissions.sh`
+1. Copy app/config/parameters.yml.dist to app/config/parameters.yml and complete with your data.
+1. Create mysql db.
+1. Check framework dependencies. `php app/check.php` and fix them.
 
-  * Twig as the only configured template engine;
+Running
+-------
 
-  * Doctrine ORM/DBAL;
+You can run software with apache (which requires vhost setup and stuff, but symfony is cool and has built in php based dev server). For dat sweet sweet server run:
 
-  * Swiftmailer;
-
-  * Annotations enabled for everything.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  http://symfony.com/doc/2.6/book/installation.html
-[6]:  http://symfony.com/doc/2.6/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  http://symfony.com/doc/2.6/book/doctrine.html
-[8]:  http://symfony.com/doc/2.6/book/templating.html
-[9]:  http://symfony.com/doc/2.6/book/security.html
-[10]: http://symfony.com/doc/2.6/cookbook/email.html
-[11]: http://symfony.com/doc/2.6/cookbook/logging/monolog.html
-[12]: http://symfony.com/doc/2.6/cookbook/assetic/asset_management.html
-[13]: http://symfony.com/doc/2.6/bundles/SensioGeneratorBundle/index.html
+	php app/console server:run
