@@ -54,3 +54,20 @@ Create setter/getter methods
 If you are lazy as me you can in entities simply write attribute and run command bellow to generate setter/getter methods and repository for it.
 
 	php app/console doctrine:generate:entities AppBundle
+
+
+Clear cache
+-----------
+
+If something doesnt show up (dont use for asset update) use this command.
+
+	php app/console cache:clear
+
+Dump assets
+-----------
+
+Assets (js, css e.c.) can be dumped from bundles to web directory on each changes. But in dev environment its possible to view changes in real time.
+If you choose not to view realtime changes to dump them use these commands.
+
+	php app/console assets:isntall --symlink    (creates symlinks from bundles to web dir, run once)
+	php app/console assetic:dump                (dump assets from symlinks in single file - can be minimized and uglyfied at this step)
