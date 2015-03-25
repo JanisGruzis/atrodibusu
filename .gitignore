@@ -1,0 +1,9 @@
+/vendor
+/app/cache/*
+/app/logs/*
+/app/config/parameters.yml
+/UPGRADE*
+/.idea
+/web/bundles
+/app/phpunit.xml
+!.gitkeep
