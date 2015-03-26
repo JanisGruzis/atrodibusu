@@ -1,5 +1,34 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content %}
-	{{ google_map(map) }}
+	<table width="100%">
+		<thead>
+			<th>Id</th>
+			<th>Nrpk</th>
+			<th>Parks</th>
+			<th>TranspVeids</th>
+			<th>GarNr</th>
+			<th>MarsrNos</th>
+			<th>TMarsruts</th>
+			<th>Virziens</th>
+			<th>ValidTalonaId</th>
+			<th>Laiks</th>
+		</thead>
+		<tbody>
+			{% for e in etalons %}
+				<tr>
+					<td>{{ e.id }}</td>
+					<td>{{ e.Nrpk }}</td>
+					<td>{{ e.Parks }}</td>
+					<td>{{ e.TranspVeids }}</td>
+					<td>{{ e.GarNr }}</td>
+					<td>{{ e.MarsrNos }}</td>
+					<td>{{ e.TMarsruts }}</td>
+					<td>{{ e.Virziens }}</td>
+					<td>{{ e.ValidTalonaId }}</td>
+					<td>{{ e.Laiks }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

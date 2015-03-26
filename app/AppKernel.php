@@ -3,6 +3,8 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+require_once __DIR__ . '/../php_cps_api/cps_api.php';
+
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -17,8 +19,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-            new StatisticsBundle\StatisticsBundle(),
-			new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+            new StatisticsBundle\StatisticsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,3 +1,5 @@
 parameters:
 
 services:
+    statistics.geolocator:
+        class: StatisticsBundle\Utility\Geolocator

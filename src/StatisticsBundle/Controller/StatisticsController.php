@@ -2,10 +2,10 @@
 
 namespace StatisticsBundle\Controller;
 
+use AppBundle\Clusterpoint\ClusterpointConnection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Ivory\GoogleMap\Map;
 
 class StatisticsController extends Controller
 {
@@ -15,10 +15,13 @@ class StatisticsController extends Controller
      */
     public function indexAction()
     {
-		$map = $this->get('ivory_google_map.map');
+		$connection = new ClusterpointConnection('etalon');
+		$request = new \CPS_SearchRequest('*', 0, 100);
+		$response = $connection->sendRequest($request);
+		$documents = $response->getRawDocuments(DOC_TYPE_ARRAY);
 
-        return [
-			'map' => $map,
+		return [
+			'etalons' => $documents
 		];
     }
 }
