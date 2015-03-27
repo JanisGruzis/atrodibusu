@@ -15,13 +15,13 @@ class StatisticsController extends Controller
      */
     public function indexAction()
     {
-		$connection = new ClusterpointConnection('etalon');
+		$connection = $this->get('clusterpoint');
 		$request = new \CPS_SearchRequest('*', 0, 100);
 		$response = $connection->sendRequest($request);
 		$documents = $response->getRawDocuments(DOC_TYPE_ARRAY);
 
 		return [
-			'etalons' => $documents
+			'data' => $documents
 		];
     }
 }

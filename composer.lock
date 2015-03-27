@@ -4,8 +4,47 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "15093349a23bee21fd1e58ea5d80f958",
+    "hash": "e3560cb07c48615b58d931218275f35d",
     "packages": [
+        {
+            "name": "clusterpoint/php-client-api",
+            "version": "3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clusterpoint/php-client-api.git",
+                "reference": "859841ebfeb076cbebddbf860b3fe067c4d3614e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clusterpoint/php-client-api/zipball/859841ebfeb076cbebddbf860b3fe067c4d3614e",
+                "reference": "859841ebfeb076cbebddbf860b3fe067c4d3614e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "cps_simple.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ClusterPoint"
+                }
+            ],
+            "homepage": "https://www.clusterpoint.com/",
+            "keywords": [
+                "api",
+                "clusterpoint"
+            ],
+            "time": "2015-03-17 15:58:27"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.3",

@@ -3,3 +3,11 @@ parameters:
 services:
     statistics.geolocator:
         class: StatisticsBundle\Utility\Geolocator
+
+    clusterpoint:
+        class: AppBundle\Clusterpoint\ClusterpointConnection
+        arguments:
+            - %cp_name%
+            - %cp_password%
+            - %cp_database%
+            - %cp_address%

@@ -4,20 +4,13 @@ namespace AppBundle\Clusterpoint;
 
 class ClusterpointConnection extends \CPS_Connection {
 
-	public function __construct($database)
+	public function __construct($name, $password, $database, $address)
 	{
-		$connectionStrings = array(
-			'tcp://78.154.146.20:9007',
-			'tcp://78.154.146.21:9007',
-			'tcp://78.154.146.22:9007',
-			'tcp://78.154.146.23:9007',
-		);
-
 		parent::__construct(
-			new \CPS_LoadBalancer($connectionStrings),
+			new \CPS_LoadBalancer($address),
 			$database,
-			"janis.gruzis@kotique.lv",
-			"YmYYkB4W",
+			$name,
+			$password,
 			'document',
 			'//document/id',
 			array('account' => 354)

@@ -3,8 +3,6 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-require_once __DIR__ . '/../php_cps_api/cps_api.php';
-
 class AppKernel extends Kernel
 {
     public function registerBundles()
