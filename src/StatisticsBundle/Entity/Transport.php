@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Transport
 {
+	const TYPE_BUS = 'Autobuss';
+	const TYPE_TROLLEYBUS = 'Troleibuss';
+	const TYPE_TRAM = 'Tramvajs';
+
     /**
      * @var integer
      *
@@ -31,9 +35,9 @@ class Transport
     /**
      * @var string
      *
-     * @ORM\Column(name="number", type="string", length=16)
+     * @ORM\Column(name="type", type="string", length=64)
      */
-    private $number;
+    private $type;
 
 
     /**

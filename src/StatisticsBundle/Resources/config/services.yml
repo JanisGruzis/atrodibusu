@@ -5,9 +5,9 @@ services:
         class: StatisticsBundle\Utility\Geolocator
 
     clusterpoint:
-        class: AppBundle\Clusterpoint\ClusterpointConnection
+        class: AppBundle\Clusterpoint\ClusterpointConnectionFactory
         arguments:
             - %cp_name%
             - %cp_password%
-            - %cp_database%
             - %cp_address%
+            - %cp_id%

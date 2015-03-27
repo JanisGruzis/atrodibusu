@@ -9,14 +9,14 @@ parameters:
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
-    cp_name: janis.gruzis@kotique.lv
-    cp_password: YmYYkB4W
-    cp_database: patronage
+    cp_name: garage48@clusterpoint.com
+    cp_password: 48garage
     cp_address:
         - "tcp://78.154.146.20:9007"
         - "tcp://78.154.146.21:9007"
         - "tcp://78.154.146.22:9007"
         - "tcp://78.154.146.23:9007"
+    cp_id: 298
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
