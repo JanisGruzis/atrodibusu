@@ -72,10 +72,11 @@ class RestController extends Controller
 		/* @var EntityRepository $repo */
 		$repo = $this->getRepository('StatisticsBundle:Time');
 		$data = $repo->createQueryBuilder('t')
-			->select('t, s')
+			->select('t')
 			->where('t.route = :route')
 			->andWhere('t.stop = :stop')
 			->leftJoin('t.statistics', 's')
+			->groupBy('t.time')
 			->orderBy('t.time', 'asc')
 			->addOrderBy('s.createdAt', 'desc')
 			->setParameters([
