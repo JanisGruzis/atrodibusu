@@ -36,7 +36,13 @@ class Route
 	 **/
 	private $transport;
 
-    /**
+	/**
+	 * @ORM\OneToMany(targetEntity="Time", mappedBy="route")
+	 * @Exclude
+	 **/
+	private $times;
+
+	/**
      * Get id
      *
      * @return integer 
@@ -90,5 +96,45 @@ class Route
     public function getTransport()
     {
         return $this->transport;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->times = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add times
+     *
+     * @param \StatisticsBundle\Entity\Time $times
+     * @return Route
+     */
+    public function addTime(\StatisticsBundle\Entity\Time $times)
+    {
+        $this->times[] = $times;
+
+        return $this;
+    }
+
+    /**
+     * Remove times
+     *
+     * @param \StatisticsBundle\Entity\Time $times
+     */
+    public function removeTime(\StatisticsBundle\Entity\Time $times)
+    {
+        $this->times->removeElement($times);
+    }
+
+    /**
+     * Get times
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTimes()
+    {
+        return $this->times;
     }
 }

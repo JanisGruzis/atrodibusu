@@ -36,7 +36,13 @@ class Route
 	 **/
 	private $transport;
 
-    /**
+	/**
+	 * @ORM\OneToMany(targetEntity="Time", mappedBy="route")
+	 * @Exclude
+	 **/
+	private $times;
+
+	/**
      * Get id
      *
      * @return integer 

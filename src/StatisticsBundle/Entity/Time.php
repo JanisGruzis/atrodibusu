@@ -51,9 +51,8 @@ class Time
 	private $stop;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Route")
+	 * @ORM\ManyToOne(targetEntity="Route", inversedBy="times")
 	 * @ORM\JoinColumn(name="route_id", referencedColumnName="id")
-	 * @Exclude
 	 **/
 	private $route;
 

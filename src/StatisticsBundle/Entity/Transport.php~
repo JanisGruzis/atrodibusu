@@ -123,4 +123,44 @@ class Transport
     {
         return $this->type;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->routes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add routes
+     *
+     * @param \StatisticsBundle\Entity\Route $routes
+     * @return Transport
+     */
+    public function addRoute(\StatisticsBundle\Entity\Route $routes)
+    {
+        $this->routes[] = $routes;
+
+        return $this;
+    }
+
+    /**
+     * Remove routes
+     *
+     * @param \StatisticsBundle\Entity\Route $routes
+     */
+    public function removeRoute(\StatisticsBundle\Entity\Route $routes)
+    {
+        $this->routes->removeElement($routes);
+    }
+
+    /**
+     * Get routes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRoutes()
+    {
+        return $this->routes;
+    }
 }
