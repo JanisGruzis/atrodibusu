@@ -65,6 +65,29 @@ class RestController extends Controller
 	}
 
 	/**
+	 * @Route("/stop/time/list/{routeId}/{reissId}")
+	 */
+	public function stopTimeListAction($routeId, $reissId)
+	{
+		/* @var EntityRepository $repo */
+		$repo = $this->getRepository('StatisticsBundle:Stop');
+		$data = $repo->createQueryBuilder('s')
+			->innerJoin('s.times', 't')
+			->innerJoin('s.routeStops', 'rs')
+			->where('rs.route = :route')
+			->andWhere('t.reissId = :reissId')
+			->orderBy('rs.position', 'asc')
+			->setParameter(':route', $routeId)
+			->getQuery()
+			->getResult();
+
+		$data = $this->toJson($data);
+		return new Response($data, 200, [
+			'Content-Type' => 'application/json'
+		]);
+	}
+
+	/**
 	 * @Route("/time/list/{routeId}/{stopId}")
 	 */
 	public function timeListAction($routeId, $stopId)
@@ -96,7 +119,17 @@ class RestController extends Controller
 			$times[$h][] = $time;
 		}
 
-		return new Response($this->toJson($times), 200, [
+		$json = $this->toJson($times);
+		$arr = json_decode($json, true);
+		srand(723686);
+		foreach ($arr as $item)
+		{
+			$item['statistics'] = [
+				'raiting' => rand() / getrandmax()
+			];
+		}
+
+		return new Response(json_encode($data), 200, [
 			'Content-Type' => 'application/json'
 		]);
 	}
