@@ -65,19 +65,18 @@ class RestController extends Controller
 	}
 
 	/**
-	 * @Route("/stop/time/list/{routeId}/{reissId}")
+	 * @Route("/stop/time/{routeId}/{reissId}")
 	 */
 	public function stopTimeListAction($routeId, $reissId)
 	{
 		/* @var EntityRepository $repo */
-		$repo = $this->getRepository('StatisticsBundle:Stop');
-		$data = $repo->createQueryBuilder('s')
-			->select('s, t')
-			->innerJoin('s.times', 't')
+		$repo = $this->getRepository('StatisticsBundle:Time');
+		$data = $repo->createQueryBuilder('t')
+			->innerJoin('t.stop', 's')
 			->innerJoin('s.routeStops', 'rs')
 			->where('rs.route = :route')
 			->andWhere('t.reissId = :reissId')
-			->orderBy('rs.position', 'asc')
+			->orderBy('t.time', 'asc')
 			->setParameters([
 				':route' => $routeId,
 				':reissId' => $reissId,
