@@ -122,14 +122,15 @@ class RestController extends Controller
 		$json = $this->toJson($times);
 		$arr = json_decode($json, true);
 		srand(723686);
-		foreach ($arr as $item)
+		foreach ($arr as $key => $item)
 		{
 			$item['statistics'] = [
 				'raiting' => rand() / getrandmax()
 			];
+			$arr[$key] = $item;
 		}
 
-		return new Response(json_encode($data), 200, [
+		return new Response(json_encode($arr), 200, [
 			'Content-Type' => 'application/json'
 		]);
 	}
