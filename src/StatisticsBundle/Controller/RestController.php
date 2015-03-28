@@ -88,7 +88,7 @@ class RestController extends Controller
 		$times = [];
 		foreach ($data as $time)
 		{
-			$h = $time->getTime()->format('H');
+			$h = intval($time->getTime()->format('H'));
 			if (!isset($times[$h])) {
 				$times[$h] = [];
 			}
