@@ -3,6 +3,7 @@
 namespace StatisticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Stop
@@ -28,6 +29,11 @@ class Stop
      */
     private $name;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="RouteStop", mappedBy="stop")
+	 * @Exclude
+	 **/
+	private $routeStops;
 
     /**
      * Get id

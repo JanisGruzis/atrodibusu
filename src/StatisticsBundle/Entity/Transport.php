@@ -3,6 +3,7 @@
 namespace StatisticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Transport
@@ -94,5 +95,28 @@ class Transport
     public function getNumber()
     {
         return $this->number;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Transport
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

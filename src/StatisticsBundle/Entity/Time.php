@@ -3,6 +3,7 @@
 namespace StatisticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Time
@@ -45,12 +46,14 @@ class Time
 	/**
 	 * @ORM\ManyToOne(targetEntity="Stop")
 	 * @ORM\JoinColumn(name="stop_id", referencedColumnName="id")
+	 * @Exclude
 	 **/
 	private $stop;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Route")
 	 * @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+	 * @Exclude
 	 **/
 	private $route;
 

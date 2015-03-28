@@ -3,6 +3,7 @@
 namespace StatisticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * RouteStop
@@ -31,12 +32,14 @@ class RouteStop
 	/**
 	 * @ORM\ManyToOne(targetEntity="Route")
 	 * @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+	 * @Exclude
 	 **/
 	private $route;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Stop")
+	 * @ORM\ManyToOne(targetEntity="Stop", inversedBy="routeStops")
 	 * @ORM\JoinColumn(name="stop_id", referencedColumnName="id")
+	 * @Exclude
 	 **/
 	private $stop;
 
@@ -71,5 +74,51 @@ class RouteStop
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set route
+     *
+     * @param \StatisticsBundle\Entity\Route $route
+     * @return RouteStop
+     */
+    public function setRoute(\StatisticsBundle\Entity\Route $route = null)
+    {
+        $this->route = $route;
+
+        return $this;
+    }
+
+    /**
+     * Get route
+     *
+     * @return \StatisticsBundle\Entity\Route 
+     */
+    public function getRoute()
+    {
+        return $this->route;
+    }
+
+    /**
+     * Set stop
+     *
+     * @param \StatisticsBundle\Entity\Stop $stop
+     * @return RouteStop
+     */
+    public function setStop(\StatisticsBundle\Entity\Stop $stop = null)
+    {
+        $this->stop = $stop;
+
+        return $this;
+    }
+
+    /**
+     * Get stop
+     *
+     * @return \StatisticsBundle\Entity\Stop 
+     */
+    public function getStop()
+    {
+        return $this->stop;
     }
 }

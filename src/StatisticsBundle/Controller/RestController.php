@@ -8,6 +8,7 @@
 
 namespace StatisticsBundle\Controller;
 
+use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,12 +19,45 @@ use Symfony\Component\HttpFoundation\Response;
 class RestController extends Controller
 {
 	/**
-	 * @Route("/transport/{type}")
+	 * @Route("/transport/list/{type}")
 	 */
-	public function getTransportAction($type)
+	public function transportListAction($type)
 	{
 		$repo = $this->getRepository('StatisticsBundle:Transport');
 		$data = $this->toJson($repo->findBy(['type' => $type]));
+		return new Response($data, 200, [
+			'Content-Type' => 'application/json'
+		]);
+	}
+
+	/**
+	 * @Route("/route/list/{transportId}")
+	 */
+	public function routeListAction($transportId)
+	{
+		$repo = $this->getRepository('StatisticsBundle:Route');
+		$data = $this->toJson($repo->findBy(['transport' => $transportId]));
+		return new Response($data, 200, [
+			'Content-Type' => 'application/json'
+		]);
+	}
+
+	/**
+	 * @Route("/stop/list/{routeId}")
+	 */
+	public function stopListAction($routeId)
+	{
+		/* @var EntityRepository $repo */
+		$repo = $this->getRepository('StatisticsBundle:Stop');
+		$data = $repo->createQueryBuilder('s')
+			->leftJoin('s.routeStops', 'rs')
+			->where('rs.route = :route')
+			->orderBy('rs.position', 'asc')
+			->setParameter(':route', $routeId)
+			->getQuery()
+			->getResult();
+
+		$data = $this->toJson($data);
 		return new Response($data, 200, [
 			'Content-Type' => 'application/json'
 		]);

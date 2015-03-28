@@ -3,6 +3,7 @@
 namespace StatisticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Route
@@ -31,6 +32,7 @@ class Route
 	/**
 	 * @ORM\ManyToOne(targetEntity="Transport")
 	 * @ORM\JoinColumn(name="transport_id", referencedColumnName="id")
+	 * @Exclude
 	 **/
 	private $transport;
 
@@ -65,5 +67,28 @@ class Route
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set transport
+     *
+     * @param \StatisticsBundle\Entity\Transport $transport
+     * @return Route
+     */
+    public function setTransport(\StatisticsBundle\Entity\Transport $transport = null)
+    {
+        $this->transport = $transport;
+
+        return $this;
+    }
+
+    /**
+     * Get transport
+     *
+     * @return \StatisticsBundle\Entity\Transport 
+     */
+    public function getTransport()
+    {
+        return $this->transport;
     }
 }

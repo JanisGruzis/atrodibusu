@@ -3,6 +3,7 @@
 namespace StatisticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * RouteStop
@@ -31,12 +32,14 @@ class RouteStop
 	/**
 	 * @ORM\ManyToOne(targetEntity="Route")
 	 * @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+	 * @Exclude
 	 **/
 	private $route;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Stop")
+	 * @ORM\ManyToOne(targetEntity="Stop", inversedBy="routeStops")
 	 * @ORM\JoinColumn(name="stop_id", referencedColumnName="id")
+	 * @Exclude
 	 **/
 	private $stop;
 

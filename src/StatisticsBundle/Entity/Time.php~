@@ -3,6 +3,7 @@
 namespace StatisticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Time
@@ -45,12 +46,14 @@ class Time
 	/**
 	 * @ORM\ManyToOne(targetEntity="Stop")
 	 * @ORM\JoinColumn(name="stop_id", referencedColumnName="id")
+	 * @Exclude
 	 **/
 	private $stop;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Route")
 	 * @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+	 * @Exclude
 	 **/
 	private $route;
 
@@ -131,5 +134,51 @@ class Time
     public function getTime()
     {
         return $this->time;
+    }
+
+    /**
+     * Set stop
+     *
+     * @param \StatisticsBundle\Entity\Stop $stop
+     * @return Time
+     */
+    public function setStop(\StatisticsBundle\Entity\Stop $stop = null)
+    {
+        $this->stop = $stop;
+
+        return $this;
+    }
+
+    /**
+     * Get stop
+     *
+     * @return \StatisticsBundle\Entity\Stop 
+     */
+    public function getStop()
+    {
+        return $this->stop;
+    }
+
+    /**
+     * Set route
+     *
+     * @param \StatisticsBundle\Entity\Route $route
+     * @return Time
+     */
+    public function setRoute(\StatisticsBundle\Entity\Route $route = null)
+    {
+        $this->route = $route;
+
+        return $this;
+    }
+
+    /**
+     * Get route
+     *
+     * @return \StatisticsBundle\Entity\Route 
+     */
+    public function getRoute()
+    {
+        return $this->route;
     }
 }
