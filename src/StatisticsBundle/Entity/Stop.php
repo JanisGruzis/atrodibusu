@@ -35,6 +35,11 @@ class Stop
 	 **/
 	private $routeStops;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Time", mappedBy="stop")
+	 **/
+	private $times;
+
     /**
      * Get id
      *
@@ -106,5 +111,38 @@ class Stop
     public function getRouteStops()
     {
         return $this->routeStops;
+    }
+
+    /**
+     * Add times
+     *
+     * @param \StatisticsBundle\Entity\Time $times
+     * @return Stop
+     */
+    public function addTime(\StatisticsBundle\Entity\Time $times)
+    {
+        $this->times[] = $times;
+
+        return $this;
+    }
+
+    /**
+     * Remove times
+     *
+     * @param \StatisticsBundle\Entity\Time $times
+     */
+    public function removeTime(\StatisticsBundle\Entity\Time $times)
+    {
+        $this->times->removeElement($times);
+    }
+
+    /**
+     * Get times
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTimes()
+    {
+        return $this->times;
     }
 }

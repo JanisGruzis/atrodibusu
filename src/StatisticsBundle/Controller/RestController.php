@@ -44,13 +44,14 @@ class RestController extends Controller
 	}
 
 	/**
-	 * @Route("/stop/list/{routeId}")
+	 * @Route("/stop/list/{routeId}/{reissId}", defaults={"reissId"=null})
 	 */
-	public function stopListAction($routeId)
+	public function stopListAction($routeId, $reissId = null)
 	{
 		/* @var EntityRepository $repo */
 		$repo = $this->getRepository('StatisticsBundle:Stop');
 		$data = $repo->createQueryBuilder('s')
+			->innerJoin('s.routeStops', 'rs')
 			->innerJoin('s.routeStops', 'rs')
 			->where('rs.route = :route')
 			->orderBy('rs.position', 'asc')

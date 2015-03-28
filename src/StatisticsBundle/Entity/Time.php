@@ -44,7 +44,7 @@ class Time
     private $time;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Stop")
+	 * @ORM\ManyToOne(targetEntity="Stop", inversedBy="times")
 	 * @ORM\JoinColumn(name="stop_id", referencedColumnName="id")
 	 * @Exclude
 	 **/

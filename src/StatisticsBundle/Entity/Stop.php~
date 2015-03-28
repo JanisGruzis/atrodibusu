@@ -35,6 +35,11 @@ class Stop
 	 **/
 	private $routeStops;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Time", mappedBy="stop")
+	 **/
+	private $times;
+
     /**
      * Get id
      *
