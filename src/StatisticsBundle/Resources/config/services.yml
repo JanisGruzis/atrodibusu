@@ -11,3 +11,11 @@ services:
             - %cp_password%
             - %cp_address%
             - %cp_id%
+
+    clusterpoint_jg:
+        class: AppBundle\Clusterpoint\ClusterpointConnectionFactory
+        arguments:
+            - %cp2_name%
+            - %cp2_password%
+            - %cp2_address%
+            - %cp2_id%

@@ -18,6 +18,15 @@ parameters:
         - "tcp://78.154.146.23:9007"
     cp_id: 298
 
+    cp2_name: janis.gruzis@kotique.lv
+    cp2_password: xxxx
+    cp2_address:
+        - 'tcp://78.154.146.20:9007'
+        - 'tcp://78.154.146.21:9007'
+        - 'tcp://78.154.146.22:9007'
+        - 'tcp://78.154.146.23:9007'
+    cp2_id: 354
+
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
     mailer_user:       ~

@@ -34,21 +34,21 @@ class Statistics
      *
      * @ORM\Column(name="boarded", type="integer")
      */
-    private $boarded;
+    private $boarded = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="driving", type="integer")
      */
-    private $driving;
+    private $driving = 0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="etalonCount", type="integer")
      */
-    private $etalonCount;
+    private $etalonCount = 0;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Time", inversedBy="statistics")

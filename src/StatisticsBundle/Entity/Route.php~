@@ -32,7 +32,6 @@ class Route
 	/**
 	 * @ORM\ManyToOne(targetEntity="Transport")
 	 * @ORM\JoinColumn(name="transport_id", referencedColumnName="id")
-	 * @Exclude
 	 **/
 	private $transport;
 
