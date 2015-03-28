@@ -21,7 +21,7 @@ class ClusterpointConnectionFactory extends \CPS_Connection {
 	{
 		return new \CPS_Connection(
 			new \CPS_LoadBalancer($this->address),
-			$this->database,
+			$database,
 			$this->name,
 			$this->password,
 			'document',
