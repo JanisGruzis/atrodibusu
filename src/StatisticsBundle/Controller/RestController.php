@@ -72,12 +72,16 @@ class RestController extends Controller
 		/* @var EntityRepository $repo */
 		$repo = $this->getRepository('StatisticsBundle:Stop');
 		$data = $repo->createQueryBuilder('s')
+			->select('s, t')
 			->innerJoin('s.times', 't')
 			->innerJoin('s.routeStops', 'rs')
 			->where('rs.route = :route')
 			->andWhere('t.reissId = :reissId')
 			->orderBy('rs.position', 'asc')
-			->setParameter(':route', $routeId)
+			->setParameters([
+				':route' => $routeId,
+				':reissId' => $reissId,
+			])
 			->getQuery()
 			->getResult();
 
