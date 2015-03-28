@@ -44,9 +44,9 @@ class RestController extends Controller
 	}
 
 	/**
-	 * @Route("/stop/list/{routeId}/{reissId}", defaults={"reissId"=null})
+	 * @Route("/stop/list/{routeId}")
 	 */
-	public function stopListAction($routeId, $reissId = null)
+	public function stopListAction($routeId)
 	{
 		/* @var EntityRepository $repo */
 		$repo = $this->getRepository('StatisticsBundle:Stop');
