@@ -84,7 +84,7 @@ class RestController extends Controller
 		$arr = [];
 		foreach ($data as $item)
 		{
-			$arr[$item->getId()] = $item;
+			$arr[$item->getStop()->getId()] = $item;
 		}
 
 		$arr = $this->toJson($arr);
