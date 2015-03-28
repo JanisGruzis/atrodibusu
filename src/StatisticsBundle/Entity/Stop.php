@@ -37,6 +37,7 @@ class Stop
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Time", mappedBy="stop")
+	 * @Exclude
 	 **/
 	private $times;
 
