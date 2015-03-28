@@ -64,6 +64,24 @@ class RestController extends Controller
 	}
 
 	/**
+	 * @Route("/time/list/{routeId}/{stopId}")
+	 */
+	public function timeListAction($routeId, $stopId)
+	{
+		/* @var EntityRepository $repo */
+		$repo = $this->getRepository('StatisticsBundle:Time');
+		$data = $repo->findBy([
+			'route' => $routeId,
+			'stop' => $stopId,
+		]);
+
+		$data = $this->toJson($data);
+		return new Response($data, 200, [
+			'Content-Type' => 'application/json'
+		]);
+	}
+
+	/**
 	 * Get repository/
 	 * @param $repo
 	 * @return mixed
