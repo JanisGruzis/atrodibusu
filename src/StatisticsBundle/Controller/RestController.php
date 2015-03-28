@@ -121,7 +121,7 @@ class RestController extends Controller
 
 		$json = $this->toJson($times);
 		$arr = json_decode($json, true);
-		srand(723686);
+		srand($routeId);
 		foreach ($arr as $key => $item)
 		{
 			$item['statistics'] = [
