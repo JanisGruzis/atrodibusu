@@ -124,9 +124,13 @@ class RestController extends Controller
 		srand($routeId);
 		foreach ($arr as $key => $item)
 		{
-			$item['statistics'] = [
-				'raiting' => rand() / getrandmax()
-			];
+			foreach ($item as $mkey => $min)
+			{
+				$min['statistics'] = [
+					'raiting' => rand() / getrandmax()
+				];
+				$item[$mkey] = $min;
+			}
 			$arr[$key] = $item;
 		}
 
