@@ -29,7 +29,7 @@ class EtalonReadCommand extends ContainerAwareCommand
 	public function execute(InputInterface $input, OutputInterface $output)
 	{
 		$offset = intval($input->getArgument('offset'));
-		$times = intval($input->getArgument('times'));
+		$timesToRun = intval($input->getArgument('times'));
 
 		$doctrine = $this->getContainer()->get('doctrine');
 		$em = $doctrine->getManager();
@@ -52,10 +52,10 @@ class EtalonReadCommand extends ContainerAwareCommand
 		$conn = $cp->getConnection('etalon_data');
 		$simple = new \CPS_Simple($conn);
 
-		$limit = 100;
+		$limit = 20;
 		$prev = null;
 
-		for ($i = 0; $i < $times; ++$i)
+		for ($i5 = 0; $i5 < $timesToRun; ++$i5)
 		{
 			$ordering = [];
 			$ordering[] = CPS_NumericOrdering('GarNr', 'ascending');
@@ -138,21 +138,19 @@ class EtalonReadCommand extends ContainerAwareCommand
 					$prev = $document;
 				}
 
-				if(!$valid) continue;
+				if(!$valid || count($times)==0) continue;
 
 				while (count($times) - 1 > $i and $laiks < $times[$i + 1]->getTime())
 				{
-					++$i;
+					$i+=1;
 				}
 
-				if (isset($time[$i])) {
-					if (!isset($statistics[$times[$i]->getId()])) {
-						$statistics[$times[$i]->getId()] = new Statistics();
-						$statistics[$times[$i]->getId()]->setCreatedAt(new \DateTime());
-						$statistics[$times[$i]->getId()]->setTime($times[$i]);
-					}
-					$statistics[$times[$i]->getId()]->setEtalonCount($statistics[$times[$i]->getId()]->getEtalonCount());
+				if (!isset($statistics[$times[$i]->getId()])) {
+					$statistics[$times[$i]->getId()] = new Statistics();
+					$statistics[$times[$i]->getId()]->setCreatedAt(new \DateTime());
+					$statistics[$times[$i]->getId()]->setTime($times[$i]);
 				}
+				$statistics[$times[$i]->getId()]->setEtalonCount($statistics[$times[$i]->getId()]->getEtalonCount()+1);
 			}
 
 			$offset += $limit;
