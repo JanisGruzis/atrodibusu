@@ -76,7 +76,8 @@ class RestController extends Controller
 			->where('t.route = :route')
 			->andWhere('t.stop = :stop')
 			->leftJoin('t.statistics', 's')
-			->orderBy('s.createdAt', 'desc')
+			->orderBy('t.time', 'asc')
+			->addOrderBy('s.createdAt', 'desc')
 			->setParameters([
 				':route' => $routeId,
 				':stop' => $stopId,
@@ -84,8 +85,17 @@ class RestController extends Controller
 			->getQuery()
 			->getResult();
 
-		$data = $this->toJson($data);
-		return new Response($data, 200, [
+		$times = [];
+		foreach ($data as $time)
+		{
+			$h = $time->getTime()->format('H');
+			if (!isset($times[$h])) {
+				$times[$h] = [];
+			}
+			$times[$h][] = $time;
+		}
+
+		return new Response($this->toJson($times), 200, [
 			'Content-Type' => 'application/json'
 		]);
 	}
