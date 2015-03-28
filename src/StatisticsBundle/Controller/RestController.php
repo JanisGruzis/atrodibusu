@@ -52,7 +52,6 @@ class RestController extends Controller
 		$repo = $this->getRepository('StatisticsBundle:Stop');
 		$data = $repo->createQueryBuilder('s')
 			->innerJoin('s.routeStops', 'rs')
-			->innerJoin('s.routeStops', 'rs')
 			->where('rs.route = :route')
 			->orderBy('rs.position', 'asc')
 			->setParameter(':route', $routeId)
