@@ -23,6 +23,7 @@ class RestController extends Controller
 	 */
 	public function transportListAction($type)
 	{
+		/* @var EntityRepository $repo */
 		$repo = $this->getRepository('StatisticsBundle:Transport');
 		$data = $this->toJson($repo->findBy(['type' => $type]));
 		return new Response($data, 200, [

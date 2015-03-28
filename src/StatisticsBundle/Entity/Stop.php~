@@ -67,4 +67,44 @@ class Stop
     {
         return $this->name;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->routeStops = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add routeStops
+     *
+     * @param \StatisticsBundle\Entity\RouteStop $routeStops
+     * @return Stop
+     */
+    public function addRouteStop(\StatisticsBundle\Entity\RouteStop $routeStops)
+    {
+        $this->routeStops[] = $routeStops;
+
+        return $this;
+    }
+
+    /**
+     * Remove routeStops
+     *
+     * @param \StatisticsBundle\Entity\RouteStop $routeStops
+     */
+    public function removeRouteStop(\StatisticsBundle\Entity\RouteStop $routeStops)
+    {
+        $this->routeStops->removeElement($routeStops);
+    }
+
+    /**
+     * Get routeStops
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRouteStops()
+    {
+        return $this->routeStops;
+    }
 }

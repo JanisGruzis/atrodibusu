@@ -40,6 +40,10 @@ class Transport
      */
     private $type;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Route", mappedBy="transport")
+	 **/
+	private $routes;
 
     /**
      * Get id
