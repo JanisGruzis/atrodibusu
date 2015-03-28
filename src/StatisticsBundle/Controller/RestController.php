@@ -50,7 +50,7 @@ class RestController extends Controller
 		/* @var EntityRepository $repo */
 		$repo = $this->getRepository('StatisticsBundle:Stop');
 		$data = $repo->createQueryBuilder('s')
-			->leftJoin('s.routeStops', 'rs')
+			->innerJoin('s.routeStops', 'rs')
 			->where('rs.route = :route')
 			->orderBy('rs.position', 'asc')
 			->setParameter(':route', $routeId)
@@ -70,10 +70,18 @@ class RestController extends Controller
 	{
 		/* @var EntityRepository $repo */
 		$repo = $this->getRepository('StatisticsBundle:Time');
-		$data = $repo->findBy([
-			'route' => $routeId,
-			'stop' => $stopId,
-		]);
+		$data = $repo->createQueryBuilder('t')
+			->select('t, s')
+			->where('t.route = :route')
+			->andWhere('t.stop = :stop')
+			->leftJoin('t.statistics', 's')
+			->orderBy('s.createdAt', 'desc')
+			->setParameters([
+				':route' => $routeId,
+				':stop' => $stopId,
+			])
+			->getQuery()
+			->getResult();
 
 		$data = $this->toJson($data);
 		return new Response($data, 200, [

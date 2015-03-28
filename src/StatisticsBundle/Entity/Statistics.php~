@@ -51,7 +51,7 @@ class Statistics
     private $etalonCount;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Time")
+	 * @ORM\ManyToOne(targetEntity="Time", inversedBy="statistics")
 	 * @ORM\JoinColumn(name="time_id", referencedColumnName="id")
 	 * @Exclude
 	 **/

@@ -68,4 +68,27 @@ class Route
     {
         return $this->name;
     }
+
+    /**
+     * Set transport
+     *
+     * @param \StatisticsBundle\Entity\Transport $transport
+     * @return Route
+     */
+    public function setTransport(\StatisticsBundle\Entity\Transport $transport = null)
+    {
+        $this->transport = $transport;
+
+        return $this;
+    }
+
+    /**
+     * Get transport
+     *
+     * @return \StatisticsBundle\Entity\Transport 
+     */
+    public function getTransport()
+    {
+        return $this->transport;
+    }
 }

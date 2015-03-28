@@ -57,7 +57,13 @@ class Time
 	 **/
 	private $route;
 
-    /**
+	/**
+	 * @ORM\OneToMany(targetEntity="Statistics", mappedBy="time")
+	 **/
+	private $statistics;
+
+
+	/**
      * Get id
      *
      * @return integer 
@@ -180,5 +186,45 @@ class Time
     public function getRoute()
     {
         return $this->route;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->statistics = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add statistics
+     *
+     * @param \StatisticsBundle\Entity\Statistics $statistics
+     * @return Time
+     */
+    public function addStatistic(\StatisticsBundle\Entity\Statistics $statistics)
+    {
+        $this->statistics[] = $statistics;
+
+        return $this;
+    }
+
+    /**
+     * Remove statistics
+     *
+     * @param \StatisticsBundle\Entity\Statistics $statistics
+     */
+    public function removeStatistic(\StatisticsBundle\Entity\Statistics $statistics)
+    {
+        $this->statistics->removeElement($statistics);
+    }
+
+    /**
+     * Get statistics
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStatistics()
+    {
+        return $this->statistics;
     }
 }
