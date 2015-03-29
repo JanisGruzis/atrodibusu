@@ -15,13 +15,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @Route("/report")
- */
 class ReportController extends Controller
 {
 	/**
-	 * @Route("/")
+	 * @Route("/report")
 	 * @Method("POST")
 	 */
 	public function reportAction(Request $request)
@@ -63,5 +60,40 @@ class ReportController extends Controller
 		$em->flush();
 
 		return new Response();
+	}
+
+	/**
+	 * @Route("/rest/report")
+	 */
+	public function getAction()
+	{
+		$repo = $this->getRepository("StatisticsBundle:Report");
+
+		return new Response(json_encode($repo->findAll()), 200, [
+			'Content-Type' => 'application/json'
+		]);
+	}
+
+	/**
+	 * Get repository/
+	 * @param $repo
+	 * @return mixed
+	 */
+	private function getRepository($repo)
+	{
+		$doctrine = $this->getDoctrine();
+		$em = $doctrine->getManager();
+		return $em->getRepository($repo);
+	}
+
+	/**
+	 * To json.
+	 * @param $data
+	 * @return mixed
+	 */
+	private function toJson($data)
+	{
+		$serializer = $this->get('jms_serializer');
+		return $serializer->serialize($data, 'json');
 	}
 }
