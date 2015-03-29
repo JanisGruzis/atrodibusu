@@ -60,7 +60,7 @@ class ReportController extends Controller
 	{
 		$repo = $this->getRepository("StatisticsBundle:Report");
 
-		return new Response(json_encode($repo->findAll()), 200, [
+		return new Response($this->toJson($repo->findAll()), 200, [
 			'Content-Type' => 'application/json'
 		]);
 	}
