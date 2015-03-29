@@ -54,7 +54,7 @@ class ReportController extends Controller
 	}
 
 	/**
-	 * @Route("/rest/report")
+	 * @Route("/api/report")
 	 */
 	public function getAction()
 	{
