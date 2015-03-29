@@ -3,6 +3,7 @@
 namespace StatisticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Report
@@ -32,6 +33,7 @@ class Report
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+	 * @Type("DateTime<'Y-m-d H:i:s'>")
      */
     private $createdAt;
 

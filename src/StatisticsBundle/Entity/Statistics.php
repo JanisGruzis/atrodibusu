@@ -4,6 +4,7 @@ namespace StatisticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Statistics
@@ -26,6 +27,7 @@ class Statistics
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+	 * @Type("DateTime<'Y-m-d H:i:s'>")
      */
     private $createdAt;
 
