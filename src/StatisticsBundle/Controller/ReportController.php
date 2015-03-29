@@ -27,6 +27,11 @@ class ReportController extends Controller
 		$lng = $request->query->get('lng');
 		$transportId = $request->query->get('tid');
 
+		if ($rid == null || $lat == null || $lng == null || $transportId == null)
+		{
+			throw $this->createNotFoundException('Arguments');
+		}
+
 		$doctrine = $this->getDoctrine();
 		$em = $doctrine->getManager();
 
