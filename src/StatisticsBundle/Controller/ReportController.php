@@ -19,49 +19,26 @@ class ReportController extends Controller
 {
 	/**
 	 * @Route("/report")
-	 * @Method("POST")
 	 */
 	public function reportAction(Request $request)
 	{
-		$data = json_decode($request->getContent(), true);
-
-		if (!is_array($data))
-		{
-			throw $this->createNotFoundException('Data must be json.');
-		}
+		$rid = $request->query->get('rid');
+		$lat = $request->query->get('lat');
+		$lng = $request->query->get('lng');
+		$transportId = $request->query->get('transportId');
 
 		$doctrine = $this->getDoctrine();
 		$em = $doctrine->getManager();
 
-		if (!isset($data['rid']))
-		{
-			throw $this->createNotFoundException('rid must be set.');
-		}
-
-		if (!isset($data['lat']))
-		{
-			throw $this->createNotFoundException('Latitude not set.');
-		}
-
-		if (!isset($data['lng']))
-		{
-			throw $this->createNotFoundException('Longitude not set.');
-		}
-
-		if (!isset($data['tid']))
-		{
-			throw $this->createNotFoundException('Transport id not set.');
-		}
-
 		$transRepo = $this->getRepository('StatisticsBundle:Transport');
-		$transport = $transRepo->load(intval($data['tid']));
+		$transport = $transRepo->load($transportId);
 
 		$report = new Report();
 		$report
 			->setCreatedAt(new \DateTime())
-			->setType($data['rid'])
-			->setLat($data['lat'])
-			->setLng($data['lng'])
+			->setType($rid)
+			->setLat($lat)
+			->setLng($lng)
 			->setTransport($transport)
 		;
 
