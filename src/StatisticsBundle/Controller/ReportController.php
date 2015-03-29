@@ -25,7 +25,7 @@ class ReportController extends Controller
 		$rid = $request->query->get('rid');
 		$lat = $request->query->get('lat');
 		$lng = $request->query->get('lng');
-		$transportId = $request->query->get('transportId');
+		$transportId = $request->query->get('tid');
 
 		$doctrine = $this->getDoctrine();
 		$em = $doctrine->getManager();
