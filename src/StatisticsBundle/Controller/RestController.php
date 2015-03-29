@@ -128,12 +128,38 @@ class RestController extends Controller
 		$json = $this->toJson($times);
 		$arr = json_decode($json, true);
 		srand($routeId);
+		$dist = [
+			'0'=>[0,0],
+			'1'=>[0,0],
+			'2'=>[0,0],
+			'3'=>[0,0],
+			'4'=>[0,0],
+			'5'=>[0,0],
+			'6'=>[0,30],
+			'7'=>[40,70],
+			'8'=>[70,100],
+			'9'=>[40,70],
+			'10'=>[20,40],
+			'11'=>[20,40],
+			'12'=>[30,50],
+			'13'=>[20,40],
+			'14'=>[20,40],
+			'15'=>[30,50],
+			'16'=>[40,60],
+			'17'=>[50,80],
+			'18'=>[60,100],
+			'19'=>[40,70],
+			'20'=>[20,40],
+			'21'=>[20,40],
+			'22'=>[0,10],
+			'23'=>[0,20]
+		];
 		foreach ($arr as $key => $item)
 		{
 			foreach ($item as $mkey => $min)
 			{
 				$min['statistics'] = [
-					'raiting' => rand() / getrandmax()
+					'raiting' => rand($dist[$key][0],$dist[$key][1]) / 100
 				];
 				$item[$mkey] = $min;
 			}
