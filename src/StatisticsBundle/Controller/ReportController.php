@@ -31,7 +31,7 @@ class ReportController extends Controller
 		$em = $doctrine->getManager();
 
 		$transRepo = $this->getRepository('StatisticsBundle:Transport');
-		$transport = $transRepo->load($transportId);
+		$transport = $transRepo->find($transportId);
 
 		$report = new Report();
 		$report
