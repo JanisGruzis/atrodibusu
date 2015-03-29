@@ -49,6 +49,12 @@ class Report
      */
     private $lng;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Transport")
+	 * @ORM\JoinColumn(name="transport_id", referencedColumnName="id")
+	 **/
+	private $transport;
+
 
     /**
      * Get id
@@ -150,5 +156,28 @@ class Report
     public function getLng()
     {
         return $this->lng;
+    }
+
+    /**
+     * Set transport
+     *
+     * @param \StatisticsBundle\Entity\Transport $transport
+     * @return Report
+     */
+    public function setTransport(\StatisticsBundle\Entity\Transport $transport = null)
+    {
+        $this->transport = $transport;
+
+        return $this;
+    }
+
+    /**
+     * Get transport
+     *
+     * @return \StatisticsBundle\Entity\Transport 
+     */
+    public function getTransport()
+    {
+        return $this->transport;
     }
 }

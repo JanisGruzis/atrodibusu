@@ -33,9 +33,9 @@ class ReportController extends Controller
 		$doctrine = $this->getDoctrine();
 		$em = $doctrine->getManager();
 
-		if (!isset($data['type']))
+		if (!isset($data['rid']))
 		{
-			throw $this->createNotFoundException('Type must be set.');
+			throw $this->createNotFoundException('rid must be set.');
 		}
 
 		if (!isset($data['lat']))
@@ -48,12 +48,21 @@ class ReportController extends Controller
 			throw $this->createNotFoundException('Longitude not set.');
 		}
 
+		if (!isset($data['tid']))
+		{
+			throw $this->createNotFoundException('Transport id not set.');
+		}
+
+		$transRepo = $this->getRepository('StatisticsBundle:Transport');
+		$transport = $transRepo->load(intval($data['tid']));
+
 		$report = new Report();
 		$report
 			->setCreatedAt(new \DateTime())
-			->setType($data['type'])
+			->setType($data['rid'])
 			->setLat($data['lat'])
 			->setLng($data['lng'])
+			->setTransport($transport)
 		;
 
 		$em->persist($report);

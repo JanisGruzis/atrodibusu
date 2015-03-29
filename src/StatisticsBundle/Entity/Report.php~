@@ -49,6 +49,12 @@ class Report
      */
     private $lng;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Transport")
+	 * @ORM\JoinColumn(name="transport_id", referencedColumnName="id")
+	 **/
+	private $transport;
+
 
     /**
      * Get id
